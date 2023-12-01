@@ -20,50 +20,8 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    .st-df td {
-        text-align: center;
-        background-color: #f2f2f2;
-        color: #1a1a1a;
-    }
-    .st-df th {
-        background-color: #0066cc;
-        color: white;
-    }
-    .st-sc {
-        background-color: #ffffff;
-    }
-    .st-cb {
-        background-color: #cce5ff;
-    }
-    .st-dd {
-        background-color: #ffffff;
-    }
-    .st-ek {
-        color: #0066cc;
-    }
-    .st-el {
-        background-color: #0066cc;
-    }
-    .st-em {
-        color: #ffffff;
-    }
-    .st-en {
-        background-color: #0066cc;
-    }
-    .st-dq {
-        color: #0066cc;
-        background-color: #f2f2f2;
-    }
-    .st-dr {
-        color: #ffffff;
-        background-color: #0066cc;
-    }
-    .st-ds {
-        color: #0066cc;
-        background-color: #f2f2f2;
-    }
-    .st-ew {
-        background-color: #cce5ff;
+    body {
+        background-color: #f4f4f4;
     }
     </style>
     """,
