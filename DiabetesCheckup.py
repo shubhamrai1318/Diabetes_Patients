@@ -23,6 +23,21 @@ st.markdown(
     body {
         background-color: #f4f4f4;
     }
+    h1 {
+        color: blue !important;
+    }
+    h2 {
+        color: blue !important;
+    }
+    h3 {
+        color: blue !important;
+    }
+    h4 {
+        color: blue !important;
+    }
+    h5 {
+        color: blue !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -162,3 +177,7 @@ else:
     st.markdown("<h2 style='text-align: center; color: red;'>You are Diabetic</h2>")
 res = str(accuracy_score(y_test, rf.predict(x_test)) * 100) + '%'
 st.markdown("<h5 style='text-align: center; color: purple;'>Accuracy : " + res + "</h5>")
+
+
+
+
