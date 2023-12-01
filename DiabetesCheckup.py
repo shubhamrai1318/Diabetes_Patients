@@ -1,197 +1,206 @@
-#pip install streamlit
-#pip install pandas
-#pip install sklearn
-
-
-# IMPORT STATEMENTS
+# Importing necessary libraries
 import streamlit as st
 import pandas as pd
-from PIL import Image
 import numpy as np
-import matplotlib.pyplot as plt
-import plotly.figure_factory as ff
-from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import seaborn as sns
-import warnings
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score
 
-# Suppress all warnings
-warnings.filterwarnings("ignore")
+# Setting the page config
+st.set_page_config(
+    page_title="Diabetes Checkup Project by Shubham Rai",
+    page_icon=":blue: :orange: :violet:",
+    layout="wide",
+)
 
+# Applying a Streamlit theme
+# You can change the values to customize the theme
+st.markdown(
+    """
+    <style>
+    .st-df td {
+        text-align: center;
+        background-color: #f2f2f2;
+        color: #1a1a1a;
+    }
+    .st-df th {
+        background-color: #0066cc;
+        color: white;
+    }
+    .st-sc {
+        background-color: #ffffff;
+    }
+    .st-cb {
+        background-color: #cce5ff;
+    }
+    .st-dd {
+        background-color: #ffffff;
+    }
+    .st-ek {
+        color: #0066cc;
+    }
+    .st-el {
+        background-color: #0066cc;
+    }
+    .st-em {
+        color: #ffffff;
+    }
+    .st-en {
+        background-color: #0066cc;
+    }
+    .st-dq {
+        color: #0066cc;
+        background-color: #f2f2f2;
+    }
+    .st-dr {
+        color: #ffffff;
+        background-color: #0066cc;
+    }
+    .st-ds {
+        color: #0066cc;
+        background-color: #f2f2f2;
+    }
+    .st-ew {
+        background-color: #cce5ff;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-#df = pd.read_csv(r'C:\Users\cools\Downloads\diabetes.csv')
+# Reading the data
 df = pd.read_csv('diabetes.csv')
-#st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
-st.write('<style>div.block-container{padding-top:1rem;}</style>')
 
-
-
-
-# HEADINGS
-st.title(':blue[Diabetes Checkup Project by] :orange[Shubham Rai]')
-#st.sidebar.title(':green[Filtering]')
-st.sidebar.header(':violet[Patient Data]')
+# Sidebar
+st.sidebar.header(':violet: [Patient Data]')
 st.subheader('Training Data Stats')
 st.write(df.describe())
 
-
 # X AND Y DATA
-x = df.drop(['Outcome'], axis = 1)
+x = df.drop(['Outcome'], axis=1)
 y = df.iloc[:, -1]
-x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.2, random_state = 0)
-
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
 # FUNCTION
 def user_report():
-  pregnancies = st.sidebar.slider('Pregnancies', 0,17, 3 )
-  glucose = st.sidebar.slider('Glucose', 0,200, 120 )
-  bp = st.sidebar.slider('Blood Pressure', 0,122, 70 )
-  skinthickness = st.sidebar.slider('Skin Thickness', 0,100, 20 )
-  insulin = st.sidebar.slider('Insulin', 0,846, 79 )
-  bmi = st.sidebar.slider('BMI', 0,67, 20 )
-  dpf = st.sidebar.slider('Diabetes Pedigree Function', 0.0,2.4, 0.47 )
-  age = st.sidebar.slider('Age', 21,88, 33 )
+    pregnancies = st.sidebar.slider('Pregnancies', 0, 17, 3)
+    glucose = st.sidebar.slider('Glucose', 0, 200, 120)
+    bp = st.sidebar.slider('Blood Pressure', 0, 122, 70)
+    skinthickness = st.sidebar.slider('Skin Thickness', 0, 100, 20)
+    insulin = st.sidebar.slider('Insulin', 0, 846, 79)
+    bmi = st.sidebar.slider('BMI', 0, 67, 20)
+    dpf = st.sidebar.slider('Diabetes Pedigree Function', 0.0, 2.4, 0.47)
+    age = st.sidebar.slider('Age', 21, 88, 33)
 
-  user_report_data = {
-      'pregnancies':pregnancies,
-      'glucose':glucose,
-      'bp':bp,
-      'skinthickness':skinthickness,
-      'insulin':insulin,
-      'bmi':bmi,
-      'dpf':dpf,
-      'age':age
-  }
-  report_data = pd.DataFrame(user_report_data, index=[0])
-  return report_data
-
-
-
+    user_report_data = {
+        'pregnancies': pregnancies,
+        'glucose': glucose,
+        'bp': bp,
+        'skinthickness': skinthickness,
+        'insulin': insulin,
+        'bmi': bmi,
+        'dpf': dpf,
+        'age': age
+    }
+    report_data = pd.DataFrame(user_report_data, index=[0])
+    return report_data
 
 # PATIENT DATA
 user_data = user_report()
-st.subheader(':orange[Calculating Report for this Patient]')
+st.subheader(':orange: [Calculating Report for this Patient]')
 st.write(user_data)
 
-
-
-
 # MODEL
-rf  = RandomForestClassifier()
+rf = RandomForestClassifier()
 rf.fit(x_train, y_train)
 user_result = rf.predict(user_data.values)
 
-
-
-
 # VISUALISATIONS
-st.title(':violet[Visualised Patient Report]')
-
-
+st.title(':violet: [Visualised Patient Report]')
 
 # COLOR FUNCTION
-if user_result[0]==0:
-  color = 'blue'
+if user_result[0] == 0:
+    color = 'blue'
 else:
-  color = 'red'
-
+    color = 'red'
 
 # Age vs Pregnancies
-st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
+st.header(':blue: [Pregnancy count Graph (Others vs Yours)]')
 fig_preg = plt.figure()
-ax1 = sns.scatterplot(x = 'Age', y = 'Pregnancies', data = df, hue = 'Outcome', palette = 'Greens')
-ax2 = sns.scatterplot(x = user_data['age'], y = user_data['pregnancies'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,20,2))
+ax1 = sns.scatterplot(x='Age', y='Pregnancies', data=df, hue='Outcome', palette='Greens')
+ax2 = sns.scatterplot(x=user_data['age'], y=user_data['pregnancies'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 20, 2))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_preg)
 
-
-
 # Age vs Glucose
-st.header(':blue[Glucose Value Graph (Others vs Yours)]')
+st.header(':blue: [Glucose Value Graph (Others vs Yours)]')
 fig_glucose = plt.figure()
-ax3 = sns.scatterplot(x = 'Age', y = 'Glucose', data = df, hue = 'Outcome' , palette='magma')
-ax4 = sns.scatterplot(x = user_data['age'], y = user_data['glucose'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,220,10))
+ax3 = sns.scatterplot(x='Age', y='Glucose', data=df, hue='Outcome', palette='magma')
+ax4 = sns.scatterplot(x=user_data['age'], y=user_data['glucose'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 220, 10))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_glucose)
 
-
-
 # Age vs Bp
-st.header(':blue[Blood Pressure Value Graph (Others vs Yours)]')
+st.header(':blue: [Blood Pressure Value Graph (Others vs Yours)]')
 fig_bp = plt.figure()
-ax5 = sns.scatterplot(x = 'Age', y = 'BloodPressure', data = df, hue = 'Outcome', palette='Reds')
-ax6 = sns.scatterplot(x = user_data['age'], y = user_data['bp'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,130,10))
+ax5 = sns.scatterplot(x='Age', y='BloodPressure', data=df, hue='Outcome', palette='Reds')
+ax6 = sns.scatterplot(x=user_data['age'], y=user_data['bp'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 130, 10))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_bp)
 
-
 # Age vs St
-st.header(':blue[Skin Thickness Value Graph (Others vs Yours)]')
+st.header(':blue: [Skin Thickness Value Graph (Others vs Yours)]')
 fig_st = plt.figure()
-ax7 = sns.scatterplot(x = 'Age', y = 'SkinThickness', data = df, hue = 'Outcome', palette='Blues')
-ax8 = sns.scatterplot(x = user_data['age'], y = user_data['skinthickness'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,110,10))
+ax7 = sns.scatterplot(x='Age', y='SkinThickness', data=df, hue='Outcome', palette='Blues')
+ax8 = sns.scatterplot(x=user_data['age'], y=user_data['skinthickness'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 110, 10))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_st)
 
-
 # Age vs Insulin
-st.header(':blue[Insulin Value Graph (Others vs Yours)]')
+st.header(':blue: [Insulin Value Graph (Others vs Yours)]')
 fig_i = plt.figure()
-ax9 = sns.scatterplot(x = 'Age', y = 'Insulin', data = df, hue = 'Outcome', palette='rocket')
-ax10 = sns.scatterplot(x = user_data['age'], y = user_data['insulin'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,900,50))
+ax9 = sns.scatterplot(x='Age', y='Insulin', data=df, hue='Outcome', palette='rocket')
+ax10 = sns.scatterplot(x=user_data['age'], y=user_data['insulin'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 900, 50))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_i)
 
-
 # Age vs BMI
-st.header(':blue[BMI Value Graph (Others vs Yours)]')
+st.header(':blue: [BMI Value Graph (Others vs Yours)]')
 fig_bmi = plt.figure()
-ax11 = sns.scatterplot(x = 'Age', y = 'BMI', data = df, hue = 'Outcome', palette='rainbow')
-ax12 = sns.scatterplot(x = user_data['age'], y = user_data['bmi'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,70,5))
+ax11 = sns.scatterplot(x='Age', y='BMI', data=df, hue='Outcome', palette='rainbow')
+ax12 = sns.scatterplot(x=user_data['age'], y=user_data['bmi'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 70, 5))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_bmi)
 
-
 # Age vs Dpf
-st.header(':blue[DPF Value Graph (Others vs Yours)]')
+st.header(':blue: [DPF Value Graph (Others vs Yours)]')
 fig_dpf = plt.figure()
-ax13 = sns.scatterplot(x = 'Age', y = 'DiabetesPedigreeFunction', data = df, hue = 'Outcome', palette='YlOrBr')
-ax14 = sns.scatterplot(x = user_data['age'], y = user_data['dpf'], s = 150, color = color)
-plt.xticks(np.arange(10,100,5))
-plt.yticks(np.arange(0,3,0.2))
+ax13 = sns.scatterplot(x='Age', y='DiabetesPedigreeFunction', data=df, hue='Outcome', palette='YlOrBr')
+ax14 = sns.scatterplot(x=user_data['age'], y=user_data['dpf'], s=150, color=color)
+plt.xticks(np.arange(10, 100, 5))
+plt.yticks(np.arange(0, 3, 0.2))
 plt.title('0 - Healthy & 1 - Unhealthy')
 st.pyplot(fig_dpf)
 
-
-
 # OUTPUT
-#st.subheader(':blue[Your Report: ]')
-#output=''
-#if user_result[0]==0:
-#  output = ' :green[You are not Diabetic]'
-#else:
-#  output = ':red[You are Diabetic]'
-#st.title(output)
-#st.subheader(':orange[Accuracy: ]')
-#st.write(str(accuracy_score(y_test, rf.predict(x_test))*100)+'%')
-
-st.markdown("<h2 style='text-align: center; color: blue;'>Your Report:</h2>", unsafe_allow_html=True)
-if user_result[0]==0:
-  st.markdown("<h2 style='text-align: center; color: green;'>You are not Diabetic</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: blue;'>Your Report:</h2>")
+if user_result[0] == 0:
+    st.markdown("<h2 style='text-align: center; color: green;'>You are not Diabetic</h2>")
 else:
-  st.markdown("<h2 style='text-align: center; color: red;'>You are Diabetic</h2>", unsafe_allow_html=True)
-res = str(accuracy_score(y_test, rf.predict(x_test))*100)+'%'
-st.markdown("<h5 style='text-align: center; color: purple;'>Accuracy : "+res+"</h5>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: red;'>You are Diabetic</h2>")
+res = str(accuracy_score(y_test, rf.predict(x_test)) * 100) + '%'
+st.markdown("<h5 style='text-align: center; color: purple;'>Accuracy : " + res + "</h5>")
