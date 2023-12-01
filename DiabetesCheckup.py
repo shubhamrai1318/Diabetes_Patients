@@ -22,7 +22,9 @@ warnings.filterwarnings("ignore")
 
 #df = pd.read_csv(r'C:\Users\cools\Downloads\diabetes.csv')
 df = pd.read_csv('diabetes.csv')
-st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
+#st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
+st.write('<style>div.block-container{padding-top:1rem;}</style>')
+
 
 
 
@@ -186,7 +188,7 @@ st.pyplot(fig_dpf)
 #st.subheader(':orange[Accuracy: ]')
 #st.write(str(accuracy_score(y_test, rf.predict(x_test))*100)+'%')
 
-
+st.markdown("<style>div.block-container{padding-top:1rem;}</style>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; color: blue;'>Your Report:</h2>", unsafe_allow_html=True)
 if user_result[0]==0:
   st.markdown("<h2 style='text-align: center; color: green;'>You are not Diabetic</h2>", unsafe_allow_html=True)
