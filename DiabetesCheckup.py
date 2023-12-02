@@ -32,7 +32,7 @@ st.markdown("<h1 style='text-align: center; color: blue;'>Diabetes Checkup Proje
 
 #st.sidebar.title(':green[Filtering]')
 #st.sidebar.header(':violet[Patient Data]')
-st.sidebar.markdown("<h3 style='color: violet;'>Patient Data</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("<h3 style='font-size: 40px; color: violet;'>Patient Data</h3>", unsafe_allow_html=True)
 
 #st.subheader('Training Data Stats')
 st.markdown("<span style='color: blue; font-size: 30px;'>Training Data Stats</span>", unsafe_allow_html=True)
@@ -184,7 +184,9 @@ st.pyplot(fig_bmi)
 
 
 # Age vs Dpf
-st.header(':blue[DPF Value Graph (Others vs Yours)]')
+#st.header(':blue[DPF Value Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>DPF Value Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_dpf = plt.figure()
 ax13 = sns.scatterplot(x = 'Age', y = 'DiabetesPedigreeFunction', data = df, hue = 'Outcome', palette='YlOrBr')
 ax14 = sns.scatterplot(x = user_data['age'], y = user_data['dpf'], s = 150, color = color)
