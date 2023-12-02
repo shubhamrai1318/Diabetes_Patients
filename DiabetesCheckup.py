@@ -34,7 +34,9 @@ st.markdown("<h1 style='text-align: center; color: blue;'>Diabetes Checkup Proje
 #st.sidebar.header(':violet[Patient Data]')
 st.sidebar.markdown("<h3 style='color: violet;'>Patient Data</h3>", unsafe_allow_html=True)
 
-st.subheader('Training Data Stats')
+#st.subheader('Training Data Stats')
+st.subheader("<span style=color: blue; 'font-size: 30px;'>Training Data Stats</span>", unsafe_allow_html=True)
+
 st.write(df.describe())
 
 
@@ -74,10 +76,7 @@ def user_report():
 # PATIENT DATA
 user_data = user_report()
 #st.subheader(':orange[Calculating Report for this Patient]')
-#st.subheader("Calculating Report for this Patient")
-st.markdown("<span style='color: orange; font-size: 30px;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
-#st.subheader("<span style='color: orange;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
-
+st.markdown("<span style='color: green; font-size: 30px;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
 st.write(user_data)
 
 
