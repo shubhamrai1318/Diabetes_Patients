@@ -34,7 +34,8 @@ st.markdown("<h1 style='text-align: center; color: blue;'>Diabetes Checkup Proje
 #st.sidebar.header(':violet[Patient Data]')
 st.sidebar.markdown("<h3 style='color: violet;'>Patient Data</h3>", unsafe_allow_html=True)
 
-st.subheader('Training Data Stats')
+#st.subheader('Training Data Stats')
+st.markdown("<span style='color: blue; font-size: 30px;'>Training Data Stats</span>", unsafe_allow_html=True)
 
 st.write(df.describe())
 
