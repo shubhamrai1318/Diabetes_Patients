@@ -28,6 +28,8 @@ st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_h
 
 # HEADINGS
 st.title(':blue[Diabetes Checkup Project by] :orange[Shubham Rai]')
+st.markdown("<h1 style='text-align: center; color: blue;'>Diabetes Checkup Project by <span style='color: orange;'>Shubham Rai</span></h1>", unsafe_allow_html=True)
+
 #st.sidebar.title(':green[Filtering]')
 st.sidebar.header(':violet[Patient Data]')
 st.subheader('Training Data Stats')
