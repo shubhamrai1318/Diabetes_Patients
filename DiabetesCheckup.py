@@ -82,6 +82,8 @@ def user_report():
 
 # PATIENT DATA
 user_data = user_report()
+st.subheader("<span style='color: orange;'>This is a blue subheader</span>", unsafe_allow_html=True)
+
 st.subheader(':orange: [Calculating Report for this Patient]')
 st.write(user_data)
 
