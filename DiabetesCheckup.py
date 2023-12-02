@@ -104,8 +104,8 @@ else:
 
 
 # Age vs Pregnancies
-st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
-#st.header("<span style='color: blue;'>Pregnancy count Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+#st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>Pregnancy count Graph (Others vs Yours)</span>", unsafe_allow_html=True)
 
 fig_preg = plt.figure()
 ax1 = sns.scatterplot(x = 'Age', y = 'Pregnancies', data = df, hue = 'Outcome', palette = 'Greens')
@@ -118,7 +118,9 @@ st.pyplot(fig_preg)
 
 
 # Age vs Glucose
-st.header(':blue[Glucose Value Graph (Others vs Yours)]')
+#st.header(':blue[Glucose Value Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>Glucose Value Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_glucose = plt.figure()
 ax3 = sns.scatterplot(x = 'Age', y = 'Glucose', data = df, hue = 'Outcome' , palette='magma')
 ax4 = sns.scatterplot(x = user_data['age'], y = user_data['glucose'], s = 150, color = color)
@@ -130,7 +132,9 @@ st.pyplot(fig_glucose)
 
 
 # Age vs Bp
-st.header(':blue[Blood Pressure Value Graph (Others vs Yours)]')
+#st.header(':blue[Blood Pressure Value Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>Blood Pressure Value Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_bp = plt.figure()
 ax5 = sns.scatterplot(x = 'Age', y = 'BloodPressure', data = df, hue = 'Outcome', palette='Reds')
 ax6 = sns.scatterplot(x = user_data['age'], y = user_data['bp'], s = 150, color = color)
@@ -141,7 +145,9 @@ st.pyplot(fig_bp)
 
 
 # Age vs St
-st.header(':blue[Skin Thickness Value Graph (Others vs Yours)]')
+#st.header(':blue[Skin Thickness Value Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>Skin Thickness Value Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_st = plt.figure()
 ax7 = sns.scatterplot(x = 'Age', y = 'SkinThickness', data = df, hue = 'Outcome', palette='Blues')
 ax8 = sns.scatterplot(x = user_data['age'], y = user_data['skinthickness'], s = 150, color = color)
@@ -152,7 +158,9 @@ st.pyplot(fig_st)
 
 
 # Age vs Insulin
-st.header(':blue[Insulin Value Graph (Others vs Yours)]')
+#st.header(':blue[Insulin Value Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>Insulin Value Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_i = plt.figure()
 ax9 = sns.scatterplot(x = 'Age', y = 'Insulin', data = df, hue = 'Outcome', palette='rocket')
 ax10 = sns.scatterplot(x = user_data['age'], y = user_data['insulin'], s = 150, color = color)
@@ -163,7 +171,9 @@ st.pyplot(fig_i)
 
 
 # Age vs BMI
-st.header(':blue[BMI Value Graph (Others vs Yours)]')
+#st.header(':blue[BMI Value Graph (Others vs Yours)]')
+st.markdown("<span style='color: blue; font-size: 30px;'>BMI Value Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_bmi = plt.figure()
 ax11 = sns.scatterplot(x = 'Age', y = 'BMI', data = df, hue = 'Outcome', palette='rainbow')
 ax12 = sns.scatterplot(x = user_data['age'], y = user_data['bmi'], s = 150, color = color)
