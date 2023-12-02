@@ -91,7 +91,7 @@ user_result = rf.predict(user_data.values)
 
 # VISUALISATIONS
 #st.title(':violet[Visualised Patient Report]')
-st.title("<span style='color: violet;'>Visualised Patient Report</span>", unsafe_allow_html=True)
+#st.title("<span style='color: violet;'>Visualised Patient Report</span>", unsafe_allow_html=True)
 
 
 
@@ -103,8 +103,8 @@ else:
 
 
 # Age vs Pregnancies
-#st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
-st.header("<span style='color: blue;'>Pregnancy count Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
+#st.header("<span style='color: blue;'>Pregnancy count Graph (Others vs Yours)</span>", unsafe_allow_html=True)
 
 fig_preg = plt.figure()
 ax1 = sns.scatterplot(x = 'Age', y = 'Pregnancies', data = df, hue = 'Outcome', palette = 'Greens')
