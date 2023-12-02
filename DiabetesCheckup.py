@@ -75,7 +75,7 @@ def user_report():
 user_data = user_report()
 #st.subheader(':orange[Calculating Report for this Patient]')
 #st.subheader("Calculating Report for this Patient")
-st.markdown("<span style='color: orange;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
+st.markdown("<span style='color: orange; font-size: 30px;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
 #st.subheader("<span style='color: orange;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
 
 st.write(user_data)
