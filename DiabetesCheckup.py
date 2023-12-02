@@ -27,11 +27,13 @@ st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_h
 
 
 # HEADINGS
-st.title(':blue[Diabetes Checkup Project by] :orange[Shubham Rai]')
+# st.title(':blue[Diabetes Checkup Project by] :orange[Shubham Rai]')
 st.markdown("<h1 style='text-align: center; color: blue;'>Diabetes Checkup Project by <span style='color: orange;'>Shubham Rai</span></h1>", unsafe_allow_html=True)
 
 #st.sidebar.title(':green[Filtering]')
-st.sidebar.header(':violet[Patient Data]')
+#st.sidebar.header(':violet[Patient Data]')
+st.sidebar.markdown("<h3 style='color: violet;'>Patient Data</h3>", unsafe_allow_html=True)
+
 st.subheader('Training Data Stats')
 st.write(df.describe())
 
@@ -71,7 +73,9 @@ def user_report():
 
 # PATIENT DATA
 user_data = user_report()
-st.subheader(':orange[Calculating Report for this Patient]')
+#st.subheader(':orange[Calculating Report for this Patient]')
+st.subheader("<span style='color: orange;'>Calculating Report for this Patient</span>", unsafe_allow_html=True)
+
 st.write(user_data)
 
 
@@ -86,7 +90,8 @@ user_result = rf.predict(user_data.values)
 
 
 # VISUALISATIONS
-st.title(':violet[Visualised Patient Report]')
+#st.title(':violet[Visualised Patient Report]')
+st.title("<span style='color: violet;'>Visualised Patient Report</span>", unsafe_allow_html=True)
 
 
 
@@ -98,7 +103,9 @@ else:
 
 
 # Age vs Pregnancies
-st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
+#st.header(':blue[Pregnancy count Graph (Others vs Yours)]')
+st.header("<span style='color: blue;'>Pregnancy count Graph (Others vs Yours)</span>", unsafe_allow_html=True)
+
 fig_preg = plt.figure()
 ax1 = sns.scatterplot(x = 'Age', y = 'Pregnancies', data = df, hue = 'Outcome', palette = 'Greens')
 ax2 = sns.scatterplot(x = user_data['age'], y = user_data['pregnancies'], s = 150, color = color)
