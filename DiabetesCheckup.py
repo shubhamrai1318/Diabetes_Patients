@@ -20,7 +20,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-df = pd.read_csv(r'C:\Users\cools\Downloads\Diabetes_Patients-main\diabetes.csv')
+df = pd.read_csv(r'diabetes.csv')
 
 st.write('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
